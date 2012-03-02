@@ -27,6 +27,7 @@ class SerialPortInput < Input
           begin
             d = @serial.readline(@eol)
             data = {}
+            time = Engine.now
             if @data.empty?
               data = {:default => d}
             else
@@ -43,7 +44,7 @@ class SerialPortInput < Input
                 data[x.strip.to_sym] = dd
               end
             end
-            Engine.emit("#{@tag}.#{device}", Engine.now, data)
+            Engine.emit("#{@tag}.#{device}", time, data)
           rescue => e
             STDERR.puts caller(), e
             break
