@@ -4,7 +4,7 @@ $:.push File.expand_path("../lib", __FILE__)
 Gem::Specification.new do |s|
   s.name        = "fluent-plugin-serialport"
   #  s.version     = Fluent::Plugin::SerialPortInput::VERSION
-  s.version     = 0.0.1
+  s.version     = "0.0.1"
   s.authors     = ["MATSUMOTO Katsuyoshi"]
   s.email       = ["matsumoto.katsuyoshi+github@gmail.com"]
   s.homepage    = ""
