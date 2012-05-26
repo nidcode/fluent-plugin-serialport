@@ -20,6 +20,7 @@ class SerialPortInput < Input
   def start
     @serial = SerialPort.new(@com_port, @baud_rate, 8, 1, SerialPort::NONE)
     @data_tag = data_tag
+    @device = device
     @thread = Thread.new(&method(:run))
   end
 
@@ -48,7 +49,7 @@ class SerialPortInput < Input
             tag = x.strip
             data[tag.to_sym] = dd
           end
-          Engine.emit("#{@tag}.#{device}", time, data)
+          Engine.emit("#{@tag}.#{@device}", time, data)
         rescue
           STDERR.puts caller()
           break
@@ -59,7 +60,8 @@ class SerialPortInput < Input
 
   private
   def device
-    File.basename(@com_port).gsub(/\./,"_")
+    split = File.basename(@com_port).split(/\./)
+    split[1]
   end
 
   def data_tag
