@@ -60,8 +60,9 @@ class SerialPortInput < Input
 
   private
   def device
-    split = File.basename(@com_port).split(/\./)
-    split[1]
+    dev = File.basename(@com_port)
+    dev = dev.split(/\./)[1] if dev =~ /\./
+    dev
   end
 
   def data_tag
