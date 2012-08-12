@@ -1,28 +1,22 @@
-# -*- encoding: utf-8 -*-
+# encoding: utf-8
 $:.push File.expand_path("../lib", __FILE__)
 
 Gem::Specification.new do |s|
   s.name        = "fluent-plugin-serialport"
-  #  s.version     = Fluent::Plugin::SerialPortInput::VERSION
-  s.version     = "0.0.1"
+  s.version     = "0.0.2"
   s.authors     = ["MATSUMOTO Katsuyoshi"]
-  s.email       = ["matsumoto.katsuyoshi+github@gmail.com"]
-  s.homepage    = ""
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
-
-  s.rubyforge_project = "fluent-plugin-serialport"
+  s.email       = ["matsumoto.katsuyoshi+rubygems@gmail.com"]
+  s.homepage    = "https://github.com/katsyoshi/fluent-plugin-serialport"
+  s.summary     = "fluentd plugin for serial port"
+  s.description = "fluentd plugin for serial port"
+  s.has_rdoc = false
+#  s.rubyforge_project = "fluent-plugin-serialport"
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
 
-  s.add_development_dependency "fluentd"
-  s.add_development_dependency "serialport"
-  s.add_runtime_dependency "fluentd"
-  s.add_runtime_dependency "serialport"
-  # specify any dependencies here; for example:
-  # s.add_development_dependency "rspec"
-  # s.add_runtime_dependency "rest-client"
+  s.add_dependency "fluentd"
+  s.add_dependency "serialport"
 end

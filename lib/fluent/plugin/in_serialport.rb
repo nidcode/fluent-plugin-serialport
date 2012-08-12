@@ -1,6 +1,7 @@
 module Fluent
 class SerialPortInput < Input
-  Plugin.register_input('serial_input', self)
+  Plugin.register_input('serialport', self)
+
   config_param :com_port, :string
   config_param :baud_rate, :integer
   config_param :data, :string
@@ -15,12 +16,12 @@ class SerialPortInput < Input
 
   def configure(conf)
     super
+    @device = device
   end
 
   def start
     @serial = SerialPort.new(@com_port, @baud_rate, 8, 1, SerialPort::NONE)
     @data_tag = data_tag
-    @device = device
     @thread = Thread.new(&method(:run))
   end
 
@@ -68,6 +69,5 @@ class SerialPortInput < Input
   def data_tag
     @data.split(",")
   end
-
 end
 end
