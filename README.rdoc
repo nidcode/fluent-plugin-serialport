@@ -4,10 +4,10 @@ fluent-plugin-serialport provides input plugin for {Fluentd}[http://fluentd.org]
 
 = Install
 
-git clone git@github.com:katsyoshi/fluent-plugin-serialport.git
-cd fluent-plugin-serialport.git
-git checkout sensor
-rake install
+  git clone git@github.com:katsyoshi/fluent-plugin-serialport.git
+  cd fluent-plugin-serialport.git
+  git checkout sensor
+  rake install
 
 == Configuration
 
@@ -17,6 +17,7 @@ rake install
     type serialport
     com_port /path/to/comport
     tag serial.sensor
+    data dID, sID, data
     baud_rate 9600
   </source>
 
