@@ -38,7 +38,7 @@ class SerialPortInput < Input
           time = Engine.now
           d = d.split(@delimiter)
           data = {}
-          @data_tag.each do |x|
+          @data_tag.each do |data_tag|
             dd = d.shift
             if dd =~ /^(0x)|(\d+)/
               if dd =~ /\./
@@ -47,7 +47,7 @@ class SerialPortInput < Input
                 dd = dd.strip.to_i
               end
             end
-            tag = x.strip
+            tag = data_tag.strip
             data[tag.to_sym] = dd
           end
           Engine.emit("#{@tag}.#{@device}", time, data)
