@@ -1,4 +1,5 @@
-module Fluent
+module Fluentd
+module Plugin
 class SerialPortInput < Input
   Plugin.register_input('serialport', self)
   config_param :com_port, :string
@@ -31,7 +32,7 @@ class SerialPortInput < Input
       unless @serial.closed?
         begin
           data = {@device => @serial.readline(@eol)}
-          Engine.emit(@tag, Engine.now, data)
+          collector.emit(@tag, Engine.now, data)
         rescue
           STDERR.puts caller()
           break
@@ -44,5 +45,6 @@ class SerialPortInput < Input
   def device
     File.basename(@com_port).gsub(/\./,"_")
   end
+end
 end
 end
